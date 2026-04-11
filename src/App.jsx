@@ -9,6 +9,17 @@ function App() {
 
   return (
     <>
+    <BrowserRouter>
+      <Navbar />
+
+      <Routes>
+        <Route path="src/pages/Home/Home.jsx" element={<Home />} />
+        <Route path="src/pages/Search/Search.jsx" element={<Search />} />
+        <Route path="src/pages/Favourites/Favourites.jsx" element={<Favourites />} />
+      </Routes>
+
+      <PlayerBar />
+    </BrowserRouter> 
       <section id="center">
         <div className="hero">
           <img src={heroImg} className="base" width="170" height="179" alt="" />
