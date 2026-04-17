@@ -1,12 +1,12 @@
-export default function TrackCard({ title, artist, cover }) {
+import './trackcard.css';
+export default function TrackCard({ name, artist, cover }) {
     return(
-        <div className="track-card-small">
+        <div className="track-card-big">
             <img src={`../../../public/images/${cover}`} alt="Album cover"/>
             <div className="track-info">
-                <h3>{title}</h3>
+                <h3>{name}</h3>
                 <p>{artist}</p>
             </div>
-            <div className="add-to-favourites"> ♥ </div>
         </div>
     )
 }
