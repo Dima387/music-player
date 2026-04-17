@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import React, { createContext, useState } from "react";
 import tracks from "../data/tracks";
 
 export const PlayerContext = createContext();
@@ -53,9 +53,10 @@ export const PlayerProvider = ({ children }) => {
     setFavorites(prev => prev.filter(t => t.id !== id));
   };
 
-  return (
-    <PlayerContext.Provider
-      value={{
+  return React.createElement(
+    PlayerContext.Provider,
+    {
+      value: {
         currentTrack,
         isPlaying,
         volume,
@@ -67,9 +68,8 @@ export const PlayerProvider = ({ children }) => {
         setVolume,
         addToFavorites,
         removeFromFavorites,
-      }}
-    >
-      {children}
-    </PlayerContext.Provider>
+      },
+    },
+    children
   );
 };

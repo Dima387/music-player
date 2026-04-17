@@ -1,5 +1,5 @@
 import { useState } from "react"
-import tracks from "../../data/tracks.json"
+import tracks from "../../data/tracks.js"
 import TrackCard from "../../components/TrackCard/TrackCard"
 export default function Search() {
     const [query, setQuery] = useState("")
