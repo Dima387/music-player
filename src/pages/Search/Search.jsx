@@ -3,7 +3,7 @@ import tracks from "../../data/tracks.js"
 import TrackCard from "../../components/TrackCard/TrackCard"
 export default function Search() {
     const [query, setQuery] = useState("")
-    const filteredTracks = tracks.filter(track => track.title.includes(query) || track.artist.includes(query))
+    const filteredTracks = tracks.filter(track => track.title?.toLowerCase().includes(query) || track.artist?.toLowerCase().includes(query))
     return (
         <div className="search-page">
             <h1>Search</h1>
@@ -11,7 +11,7 @@ export default function Search() {
                 type="text"
                 placeholder="Search tracks..."
                 value={query}
-                onChange={e => setQuery(e.target.value)}
+                onChange={e => setQuery(e.target.value.toLowerCase())}
             />
             {filteredTracks.map(track => (
                 <TrackCard
