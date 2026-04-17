@@ -1,4 +1,4 @@
-export default function TrackCard(title, artist, cover) {
+export default function TrackCard({ title, artist, cover }) {
     return(
         <div className="track-card-small">
             <img src={cover} alt="Album cover"/>

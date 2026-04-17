@@ -14,9 +14,9 @@ function App() {
       <Navbar />
 
       <Routes>
-        <Route path="src/pages/Home/Home.jsx" element={<Home />} />
-        <Route path="src/pages/Search/Search.jsx" element={<Search />} />
-        <Route path="src/pages/Favourites/Favourites.jsx" element={<Favourites />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/search" element={<Search />} />
+        <Route path="/favourites" element={<Favourites />} />
       </Routes>
 
       {/* <PlayerBar /> */}
