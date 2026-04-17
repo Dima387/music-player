@@ -1,0 +1,14 @@
+.home-page {
+    padding: 20px;
+}
+
+.home-page h1 {
+    margin-bottom: 30px;
+}
+
+.tracks {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 0;
+}
