@@ -1,4 +1,4 @@
-export default function ProgressBar(currTime, duration) {
+export default function ProgressBar({currTime, duration}) {
     return (
         <div className="progress-bar">
             <span className="current-time">{currTime}</span>

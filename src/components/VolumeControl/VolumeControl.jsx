@@ -1,4 +1,4 @@
-export default function VolumeControl(min, max, value) {
+export default function VolumeControl({min, max, value}) {
     return (
         <div className="volume-control">
             <button className="mute-btn"> 🔇 </button>
