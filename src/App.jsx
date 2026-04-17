@@ -10,7 +10,6 @@ function App() {
 
   return (
     <>
-    <BrowserRouter>
       <Navbar />
 
       <Routes>
@@ -20,7 +19,6 @@ function App() {
       </Routes>
 
       {/* <PlayerBar /> */}
-    </BrowserRouter> 
     </>
   )
 }
