@@ -4,9 +4,10 @@ import "./Navbar.css";
 function Navbar() {
   return (
     <nav className="navbar">
-      <h2>Music Player</h2>
+      <Link to="/"><img src="public/images/logo.png" alt="Echo+" /></Link>
 
       <div className="links">
+
         <Link to="/">Home</Link>
         <Link to="/search">Search</Link>
         <Link to="/favourites">Favourites</Link>
