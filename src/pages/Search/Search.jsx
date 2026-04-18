@@ -20,6 +20,7 @@ export default function Search() {
                     name={track.name}
                     artist={track.artist}
                     cover={track.cover}
+                    src={track.src}
                 />
             ))}
         </div>

@@ -1,8 +1,8 @@
 import './trackcard.css';
-import { useContext, forwardRef } from "react"
+import { useContext } from "react"
 import { PlayerContext } from "../../context/PlayerContext"
 
-const TrackCard = forwardRef(({ id, name, artist, cover }, ref) => {
+export default function TrackCard({ id, name, artist, cover, src }) {
 
     const {
     playTrack,
@@ -16,28 +16,26 @@ const TrackCard = forwardRef(({ id, name, artist, cover }, ref) => {
     const isCurrent = currentTrack?.id === id
 
     const handlePlay = () => {
-        playTrack({ id, name, artist, cover })
+        playTrack({ id, name, artist, cover, src })
     }
 
     const handleFav = (e) => {
         e.stopPropagation()
 
         if (isFav) removeFromFavorites(id)
-        else addToFavorites({ id, name, artist, cover })
+        else addToFavorites({ id, name, artist, cover, src })
     }
 
     return(
-        <div ref={ref} className={`track-card-big ${isCurrent ? "active" : ""}`} onClick={handlePlay}>
-            <img src={`../../../public/images/${cover}`} alt="Album cover"/>
+        <div className={`track-card-big ${isCurrent ? "active" : ""}`} onClick={handlePlay}>
+            <img src={`/images/${cover}`} alt="Album cover"/>
             <div className="track-info">
                 <h3>{name}</h3>
                 <p>{artist}</p>
             </div>
-            <button onClick={handleFav}>
+            <button type="button" onClick={handleFav}>
                 {isFav ? "❤️" : "🤍"}
             </button>
         </div>
     )
-})
-
-export default TrackCard
+}
