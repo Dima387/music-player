@@ -5,7 +5,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    background-color: rgb(54, 61, 69);
+    background-color: rgb(42, 47, 54);
     border-radius: 10px;
     margin: 10px;
     padding: 10px;
@@ -23,9 +23,52 @@ img {
     margin-top: 10px;
     text-align: left;
     width: 90%;
+    padding: 0 5%;
 }
 .track-card-big p {
     color: #70757e;
     font-size: 14px;
     
+}
+h3 {
+    font-size: 18px;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    margin: 0;
+}
+h3.scrolling {
+    animation: scrollText 10s linear infinite;
+}
+h3.scrolling::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -20px;
+    width: 20px;
+    height: 100%;
+    background: linear-gradient(to right, rgb(42, 47, 54), transparent);
+    pointer-events: none;
+}
+h3.scrolling::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20px;
+    height: 100%;
+    background: linear-gradient(to left, rgb(42, 47, 54), transparent);
+    pointer-events: none;
+}
+
+@keyframes scrollText {
+    0%, 20% {
+        transform: translateX(0);
+    }
+    40%, 60% {
+        transform: translateX(calc(-100% + 90%));
+    }
+    80%, 100% {
+        transform: translateX(0);
+    }
 }

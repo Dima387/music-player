@@ -1,6 +1,8 @@
 import { useState } from "react"
 import tracks from "../../data/tracks.js"
-import TrackCard from "../../components/TrackCard/TrackCard"
+import TrackListItem from "../../components/TrackListItem/TrackListItem"
+import './search.css';
+
 export default function Search() {
     const [query, setQuery] = useState("")
     const filteredTracks = tracks.filter(track => track.title?.toLowerCase().includes(query) || track.artist?.toLowerCase().includes(query))
@@ -13,14 +15,14 @@ export default function Search() {
                 value={query}
                 onChange={e => setQuery(e.target.value.toLowerCase())}
             />
-            {filteredTracks.map(track => (
-                <TrackCard
-                    key={track.id}
-                    title={track.title}
-                    artist={track.artist}
-                    cover={track.cover}
-                />
-            ))}
+            <div className="tracks-list">
+                {filteredTracks.map(track => (
+                    <TrackListItem
+                        key={track.id}
+                        track={track}
+                    />
+                ))}
+            </div>
         </div>
     )
 }
