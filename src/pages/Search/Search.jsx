@@ -5,7 +5,7 @@ import './search.css';
 
 export default function Search() {
     const [query, setQuery] = useState("")
-    const filteredTracks = tracks.filter(track => track.title?.toLowerCase().includes(query) || track.artist?.toLowerCase().includes(query))
+    const filteredTracks = tracks.filter(track => track.name?.toLowerCase().includes(query) || track.artist?.toLowerCase().includes(query))
     return (
         <div className="search-page">
             <h1>Search</h1>
@@ -15,14 +15,16 @@ export default function Search() {
                 value={query}
                 onChange={e => setQuery(e.target.value.toLowerCase())}
             />
-            <div className="tracks-list">
-                {filteredTracks.map(track => (
-                    <TrackListItem
-                        key={track.id}
-                        track={track}
-                    />
-                ))}
-            </div>
+            {filteredTracks.map(track => (
+                <TrackCard
+                    key={track.id}
+                    id={track.id}
+                    name={track.name}
+                    artist={track.artist}
+                    cover={track.cover}
+                    src={track.src}
+                />
+            ))}
         </div>
     )
 }
