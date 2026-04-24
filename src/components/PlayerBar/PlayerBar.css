@@ -1,0 +1,156 @@
+.player-bar {
+  width: 100%;
+  max-width: 1126px;
+  margin: 0 auto;
+  padding: 18px 24px;
+  background: rgba(255, 255, 255, 0.92);
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.06);
+  backdrop-filter: blur(16px);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.player-bar__meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.player-bar__track {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.player-bar__cover {
+  width: 64px;
+  height: 64px;
+  border-radius: 18px;
+  object-fit: cover;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+.player-bar__text {
+  text-align: left;
+  min-width: 0;
+}
+
+.player-bar__text h3 {
+  font-size: 16px;
+  color: var(--text-h);
+  margin-bottom: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.player-bar__text p {
+  font-size: 14px;
+  color: var(--text);
+  opacity: 0.9;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.player-bar__body {
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) minmax(260px, 2fr) minmax(180px, 1fr);
+  align-items: center;
+  gap: 20px;
+}
+
+.player-controls,
+.volume-control,
+.progress-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.player-controls {
+  justify-content: center;
+}
+
+.player-controls button,
+.volume-control .mute-btn {
+  border: none;
+  background: rgba(170, 59, 255, 0.1);
+  color: var(--accent);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.player-controls button:hover,
+.volume-control .mute-btn:hover {
+  transform: scale(1.05);
+  background: rgba(170, 59, 255, 0.18);
+}
+
+.player-controls .playbtn {
+  width: 56px;
+  height: 56px;
+  font-size: 18px;
+}
+
+.progress-bar {
+  justify-content: stretch;
+}
+
+.progress-bar .current-time,
+.progress-bar .duration {
+  width: 48px;
+  font-size: 13px;
+  color: var(--text);
+  opacity: 0.75;
+}
+
+.slider {
+  flex: 1;
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.12);
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+.volume-control {
+  justify-content: flex-end;
+}
+
+@media (max-width: 860px) {
+  .player-bar {
+    padding: 16px 18px;
+  }
+
+  .player-bar__body {
+    grid-template-columns: 1fr;
+  }
+
+  .player-bar__track {
+    gap: 12px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .player-bar {
+    background: rgba(24, 24, 30, 0.9);
+    border-top-color: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.35);
+  }
+
+  .player-bar__text h3,
+  .player-bar__text p,
+  .player-controls button,
+  .volume-control .mute-btn {
+    color: #f8f8ff;
+  }
+}

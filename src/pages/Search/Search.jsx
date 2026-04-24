@@ -1,6 +1,8 @@
 import { useState } from "react"
 import tracks from "../../data/tracks.js"
-import TrackCard from "../../components/TrackCard/TrackCard"
+import TrackListItem from "../../components/TrackListItem/TrackListItem"
+import './search.css';
+
 export default function Search() {
     const [query, setQuery] = useState("")
     const filteredTracks = tracks.filter(track => track.name?.toLowerCase().includes(query) || track.artist?.toLowerCase().includes(query))
@@ -20,6 +22,7 @@ export default function Search() {
                     name={track.name}
                     artist={track.artist}
                     cover={track.cover}
+                    src={track.src}
                 />
             ))}
         </div>
