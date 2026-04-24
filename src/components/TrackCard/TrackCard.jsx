@@ -1,3 +1,4 @@
+import { useRef, useEffect, useState } from 'react';
 import './trackcard.css';
 import { useContext } from "react"
 import { PlayerContext } from "../../context/PlayerContext"

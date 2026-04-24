@@ -1,0 +1,18 @@
+.favourites-page {
+    padding: 20px;
+}
+
+.favourites-page h1 {
+    margin-bottom: 20px;
+}
+
+.favourites-page p {
+    color: #70757e;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.tracks-list {
+    display: flex;
+    flex-direction: column;
+}

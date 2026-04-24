@@ -1,6 +1,7 @@
 import { useContext } from "react"
-import TrackCard from "../../components/TrackCard/TrackCard"
+import TrackListItem from "../../components/TrackListItem/TrackListItem"
 import { PlayerContext } from "../../context/PlayerContext"
+import './favourites.css';
 
 export default function Favourites() {
     const { favorites } = useContext(PlayerContext)
@@ -17,9 +18,11 @@ export default function Favourites() {
     return (
         <div className="favourites-page">
             <h1>Favourites</h1>
-            {favorites.map(t => (
-                <TrackCard key={t.id} {...t} />
-            ))}
+            <div className="tracks-list">
+                {favorites.map(t => (
+                    <TrackListItem key={t.id} track={t} />
+                ))}
+            </div>
         </div>
     )
 }
