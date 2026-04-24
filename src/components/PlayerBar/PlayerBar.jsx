@@ -45,7 +45,7 @@ function PlayerBar() {
         .play()
         .catch((e) => console.warn("Autoplay blocked:", e))
     }
-  }, [currentTrack, isPlaying])
+  }, [currentTrack])
 
   useEffect(() => {
     if (!audioRef.current) return
