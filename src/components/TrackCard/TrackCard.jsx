@@ -31,7 +31,7 @@ export default function TrackCard({ id, name, artist, cover, src }) {
         <div className={`track-card-big ${isCurrent ? "active" : ""}`} onClick={handlePlay}>
             <img src={`/images/${cover}`} alt="Album cover"/>
             <div className="track-info">
-                <h3 ref={titleRef} className={isOverflowing ? 'scrolling' : ''}>{name}</h3>
+                <h3>{name}</h3>
                 <p>{artist}</p>
             </div>
             <button type="button" onClick={handleFav}>
