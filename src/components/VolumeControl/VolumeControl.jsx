@@ -2,7 +2,7 @@ export default function VolumeControl({ min, max, value, onChange, onMute, muted
     return (
         <div className="volume-control">
             <button type="button" className="mute-btn" onClick={onMute}>
-                {muted ? '🔈' : '🔇'}
+                {muted ? '🔇' : '🔈'}
             </button>
             <input
                 type="range"
