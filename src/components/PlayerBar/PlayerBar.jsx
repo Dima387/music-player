@@ -25,15 +25,27 @@ function PlayerBar() {
   } = useContext(PlayerContext)
 
   useEffect(() => {
-    if (!currentTrack || !audioRef.current) return
+    if (!audioRef.current) return
 
     const audio = audioRef.current
+    if (!currentTrack) {
+      audio.pause()
+      setCurrTime(0)
+      setDuration(0)
+      return
+    }
+
     audio.src = `/audio/${currentTrack.src}`
     audio.load()
-    audio
-      .play()
-      .catch((e) => console.warn("Autoplay blocked:", e))
-  }, [currentTrack])
+    setCurrTime(0)
+    setDuration(0)
+
+    if (isPlaying) {
+      audio
+        .play()
+        .catch((e) => console.warn("Autoplay blocked:", e))
+    }
+  }, [currentTrack, isPlaying])
 
   useEffect(() => {
     if (!audioRef.current) return
@@ -55,6 +67,12 @@ function PlayerBar() {
   }, [volume])
 
   useEffect(() => {
+    if (!audioRef.current) return
+
+    audioRef.current.muted = muted
+  }, [muted])
+
+  useEffect(() => {
     const audio = audioRef.current
     if (!audio) return
 
@@ -65,7 +83,7 @@ function PlayerBar() {
         audio.currentTime = 0
         audio.play().catch((e) => console.warn(e))
       } else {
-        pauseTrack()
+        nextTrack()
       }
     }
 
@@ -78,7 +96,7 @@ function PlayerBar() {
       audio.removeEventListener("loadedmetadata", onLoadedMetadata)
       audio.removeEventListener("ended", onEnded)
     }
-  }, [pauseTrack, repeat])
+  }, [nextTrack, repeat])
 
   const handleTogglePlay = () => {
     if (!currentTrack) return
