@@ -1,6 +1,6 @@
 import { useState } from "react"
 import tracks from "../../data/tracks.js"
-import TrackListItem from "../../components/TrackListItem/TrackListItem"
+import TrackCard from "../../components/TrackCard/TrackCard.jsx";
 import './search.css';
 
 export default function Search() {
