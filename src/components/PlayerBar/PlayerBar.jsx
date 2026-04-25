@@ -123,7 +123,17 @@ function PlayerBar() {
   }
 
   const handleShuffle = () => setShuffle((prev) => !prev)
-  const handleRepeat = () => setRepeat((prev) => !prev)
+  const handleRepeat = () => {
+    if (!audioRef.current || !currentTrack) return
+    
+    // Restart the current track from the beginning
+    audioRef.current.currentTime = 0
+    if (!isPlaying) {
+      playTrack(currentTrack)
+    } else {
+      audioRef.current.play().catch((e) => console.warn("Play error:", e))
+    }
+  }
   const handleNext = () => nextTrack()
   const handlePrev = () => prevTrack()
 

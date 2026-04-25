@@ -4,7 +4,7 @@ import "./Navbar.css";
 function Navbar() {
   return (
     <nav className="navbar">
-      <Link to="/"><img src="public/images/logo.png" alt="Echo+" /></Link>
+      <a href="/"><img src="public/images/echo_navbar_logo_bigger.svg" alt="Echo" /></a>
 
       <div className="links">
 
