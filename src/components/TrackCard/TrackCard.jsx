@@ -13,6 +13,16 @@ export default function TrackCard({ id, name, artist, cover, src }) {
     currentTrack
     } = useContext(PlayerContext)
 
+    const headingRef = useRef(null)
+    const [isScrolling, setIsScrolling] = useState(false)
+
+    useEffect(() => {
+        if (headingRef.current) {
+            const isOverflowing = headingRef.current.scrollWidth > headingRef.current.clientWidth
+            setIsScrolling(isOverflowing)
+        }
+    }, [name])
+
     const isFav = favorites.some((t) => t.id === id)
     const isCurrent = currentTrack?.id === id
 
@@ -31,12 +41,16 @@ export default function TrackCard({ id, name, artist, cover, src }) {
         <div className={`track-card-big ${isCurrent ? "active" : ""}`} onClick={handlePlay}>
             <img src={`/images/${cover}`} alt="Album cover"/>
             <div className="track-info">
-                <h3>{name}</h3>
+                <h3 ref={headingRef} className={isScrolling ? "scrolling" : ""}>{name}</h3>
+                <div className="text-gradient-overlay"></div>
                 <p>{artist}</p>
             </div>
-            <button type="button" onClick={handleFav}>
-                {isFav ? "❤️" : "🤍"}
-            </button>
+            <div className="favorite-btn">
+                <button type="button" onClick={handleFav}>
+                    {isFav ? "❤️" : "🤍"}
+                </button>
+                <p>Додати у вибране</p>
+            </div>
         </div>
     )
 }
