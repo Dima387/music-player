@@ -4,6 +4,8 @@
     border-radius: 10px;
     margin: 10px;
     padding: 10px;
+    border: 1px solid var(--border);
+    transition: background-color 0.3s;
 }
 .track-card-grid {
     width: 100%;
@@ -74,6 +76,7 @@ img {
     margin: 0;
 }
 h3 {
+    color: var(--text-h);
     font-size: 18px;
 }
 
@@ -110,7 +113,7 @@ h3 {
     left: 0;
     width: 30px;
     height: 100%;
-    background: linear-gradient(to right, rgb(42, 47, 54), rgba(42, 47, 54, 0));
+    background: linear-gradient(to right, var(--card-bg), transparent);
 }
 
 .text-gradient-overlay::after {
@@ -120,7 +123,7 @@ h3 {
     right: 0;
     width: 30px;
     height: 100%;
-    background: linear-gradient(to left, rgb(42, 47, 54), rgba(42, 47, 54, 0));
+    background: linear-gradient(to left, var(--card-bg), transparent);
 }
 
 .favorite-btn {

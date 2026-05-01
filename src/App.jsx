@@ -5,11 +5,14 @@ import Favourites from "./pages/Favourites/Favourites";
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
 import PlayerBar from "./components/PlayerBar/PlayerBar";
+import { useContext } from "react";
+import { PlayerContext } from "./context/PlayerContext";
 
 function App() {
+  const { theme } = useContext(PlayerContext);
 
   return (
-    <>
+    <div className={`app ${theme}`}>
       <Navbar />
 
       <Routes>
@@ -19,7 +22,7 @@ function App() {
       </Routes>
 
       <PlayerBar />
-    </>
+    </div>
   )
 }
 

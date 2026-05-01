@@ -11,6 +11,7 @@ export const PlayerProvider = ({ children }) => {
   const [repeat, setRepeat] = useState(false);
   const [shuffle, setShuffle] = useState(false);
   const [playedTracks, setPlayedTracks] = useState([]);
+  const [theme, setTheme] = useState('light');
 
   // ▶️ Play
   const playTrack = (track) => {
@@ -91,6 +92,11 @@ export const PlayerProvider = ({ children }) => {
     });
   };
 
+  // 🌙 Toggle theme
+  const toggleTheme = () => {
+    setTheme(prev => prev === 'light' ? 'dark' : 'light');
+  };
+
   return React.createElement(
     PlayerContext.Provider,
     {
@@ -102,6 +108,7 @@ export const PlayerProvider = ({ children }) => {
         repeat,
         shuffle,
         tracks,
+        theme,
         playTrack,
         pauseTrack,
         nextTrack,
@@ -111,6 +118,7 @@ export const PlayerProvider = ({ children }) => {
         removeFromFavorites,
         toggleShuffle,
         toggleRepeat,
+        toggleTheme,
       },
     },
     children
