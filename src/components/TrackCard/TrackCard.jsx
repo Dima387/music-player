@@ -3,7 +3,7 @@ import './trackcard.css';
 import { useContext } from "react"
 import { PlayerContext } from "../../context/PlayerContext"
 
-export default function TrackCard({ id, name, artist, cover, src }) {
+export default function TrackCard({ id, name, artist, cover, src, variant = "grid" }) {
 
     const {
     playTrack,
@@ -38,7 +38,7 @@ export default function TrackCard({ id, name, artist, cover, src }) {
     }
 
     return(
-        <div className={`track-card-big ${isCurrent ? "active" : ""}`} onClick={handlePlay}>
+        <div className={`track-card ${variant === "row" ? "track-card-row" : "track-card-grid"} ${isCurrent ? "active" : ""}`} onClick={handlePlay}>
             <img src={`/images/${cover}`} alt="Album cover"/>
             <div className="track-info">
                 <h3 ref={headingRef} className={isScrolling ? "scrolling" : ""}>{name}</h3>
