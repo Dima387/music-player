@@ -44,7 +44,8 @@ h3 {
 }
 
 h3.scrolling {
-    animation: scrollText 15s ease-in-out infinite;
+    text-overflow: clip;
+    animation: scrollText 8s linear infinite;
 }
 
 
@@ -81,13 +82,10 @@ h3.scrolling {
 
 @keyframes scrollText {
     0% {
-        transform: translateX(0);
-    }
-    50% {
-        transform: translateX(calc(-100% + 70%));
+        transform: translateX(100%);
     }
     100% {
-        transform: translateX(0);
+        transform: translateX(-100%);
     }
 }
 

@@ -42,6 +42,7 @@
 .player-bar__text {
   text-align: left;
   min-width: 0;
+  overflow: hidden;
 }
 
 .player-bar__text h3 {
@@ -52,6 +53,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
 
 .player-bar__text p {
   font-size: 14px;
