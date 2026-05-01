@@ -8,9 +8,15 @@ export const PlayerProvider = ({ children }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolumeState] = useState(1);
   const [favorites, setFavorites] = useState([]);
+  const [repeat, setRepeat] = useState(false);
+  const [shuffle, setShuffle] = useState(false);
+  const [playedTracks, setPlayedTracks] = useState([]);
 
   // ▶️ Play
   const playTrack = (track) => {
+    if (currentTrack && currentTrack.id !== track.id) {
+      setPlayedTracks(prev => [currentTrack, ...prev.slice(0, 9)]); // keep last 10
+    }
     setCurrentTrack(track);
     setIsPlaying(true);
   };
@@ -24,18 +30,32 @@ export const PlayerProvider = ({ children }) => {
   const nextTrack = () => {
     if (!currentTrack) return;
 
-    const idx = tracks.findIndex(t => t.id === currentTrack.id);
-    const next = tracks[(idx + 1) % tracks.length];
-    setCurrentTrack(next);
+    let next;
+    if (shuffle) {
+      const availableTracks = tracks.filter(t => t.id !== currentTrack.id);
+      if (availableTracks.length === 0) return; // only one track
+      next = availableTracks[Math.floor(Math.random() * availableTracks.length)];
+    } else {
+      const idx = tracks.findIndex(t => t.id === currentTrack.id);
+      next = tracks[(idx + 1) % tracks.length];
+    }
+    playTrack(next);
   };
 
   // ⏮ Prev
   const prevTrack = () => {
     if (!currentTrack) return;
 
-    const idx = tracks.findIndex(t => t.id === currentTrack.id);
-    const prev = tracks[(idx - 1 + tracks.length) % tracks.length];
+    let prev;
+    if (shuffle && playedTracks.length > 0) {
+      prev = playedTracks[0];
+      setPlayedTracks(prev => prev.slice(1));
+    } else {
+      const idx = tracks.findIndex(t => t.id === currentTrack.id);
+      prev = tracks[(idx - 1 + tracks.length) % tracks.length];
+    }
     setCurrentTrack(prev);
+    setIsPlaying(true);
   };
 
   // 🔊 Volume
@@ -53,6 +73,24 @@ export const PlayerProvider = ({ children }) => {
     setFavorites(prev => prev.filter(t => t.id !== id));
   };
 
+  // 🔀 Toggle shuffle
+  const toggleShuffle = () => {
+    setShuffle(prev => {
+      const newShuffle = !prev;
+      if (newShuffle) setRepeat(false);
+      return newShuffle;
+    });
+  };
+
+  // ↻ Toggle repeat
+  const toggleRepeat = () => {
+    setRepeat(prev => {
+      const newRepeat = !prev;
+      if (newRepeat) setShuffle(false);
+      return newRepeat;
+    });
+  };
+
   return React.createElement(
     PlayerContext.Provider,
     {
@@ -61,6 +99,9 @@ export const PlayerProvider = ({ children }) => {
         isPlaying,
         volume,
         favorites,
+        repeat,
+        shuffle,
+        tracks,
         playTrack,
         pauseTrack,
         nextTrack,
@@ -68,6 +109,8 @@ export const PlayerProvider = ({ children }) => {
         setVolume,
         addToFavorites,
         removeFromFavorites,
+        toggleShuffle,
+        toggleRepeat,
       },
     },
     children
