@@ -100,6 +100,11 @@
   background: rgba(170, 59, 255, 0.18);
 }
 
+.player-controls button.active {
+  background: rgba(170, 59, 255, 0.3);
+  color: white;
+}
+
 .player-controls .playbtn {
   width: 56px;
   height: 56px;

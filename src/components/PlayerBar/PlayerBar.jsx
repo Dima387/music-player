@@ -10,18 +10,22 @@ function PlayerBar() {
   const [currTime, setCurrTime] = useState(0)
   const [duration, setDuration] = useState(0)
   const [muted, setMuted] = useState(false)
-  const [repeat, setRepeat] = useState(false)
-  const [shuffle, setShuffle] = useState(false)
+  const [shouldRestartPrev, setShouldRestartPrev] = useState(true)
 
   const {
     currentTrack,
     isPlaying,
     volume,
+    repeat,
+    shuffle,
+    tracks,
     pauseTrack,
     playTrack,
     nextTrack,
     prevTrack,
     setVolume,
+    toggleShuffle,
+    toggleRepeat,
   } = useContext(PlayerContext)
 
   useEffect(() => {
@@ -39,6 +43,7 @@ function PlayerBar() {
     audio.load()
     setCurrTime(0)
     setDuration(0)
+    setShouldRestartPrev(true)
 
     if (isPlaying) {
       audio
@@ -99,7 +104,12 @@ function PlayerBar() {
   }, [nextTrack, repeat])
 
   const handleTogglePlay = () => {
-    if (!currentTrack) return
+    if (!currentTrack) {
+      if (tracks.length > 0) {
+        playTrack(tracks[0])
+      }
+      return
+    }
     if (isPlaying) pauseTrack()
     else playTrack(currentTrack)
   }
@@ -122,20 +132,22 @@ function PlayerBar() {
     setMuted(nextState)
   }
 
-  const handleShuffle = () => setShuffle((prev) => !prev)
-  const handleRepeat = () => {
+  const handleShuffle = () => toggleShuffle()
+  const handleRepeat = () => toggleRepeat()
+  const handleNext = () => {
+    nextTrack()
+    setShouldRestartPrev(true)
+  }
+  const handlePrev = () => {
     if (!audioRef.current || !currentTrack) return
-    
-    // Restart the current track from the beginning
-    audioRef.current.currentTime = 0
-    if (!isPlaying) {
-      playTrack(currentTrack)
+    if (shouldRestartPrev) {
+      audioRef.current.currentTime = 0
+      setShouldRestartPrev(false)
     } else {
-      audioRef.current.play().catch((e) => console.warn("Play error:", e))
+      prevTrack()
+      setShouldRestartPrev(true)
     }
   }
-  const handleNext = () => nextTrack()
-  const handlePrev = () => prevTrack()
 
   const trackTitle = currentTrack?.name ?? "No track selected"
   const trackArtist = currentTrack?.artist ?? "Select a track to play"
@@ -161,6 +173,8 @@ function PlayerBar() {
           onNext={handleNext}
           onRepeat={handleRepeat}
           isPlaying={isPlaying}
+          shuffle={shuffle}
+          repeat={repeat}
         />
 
         <ProgressBar
