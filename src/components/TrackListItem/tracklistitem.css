@@ -1,6 +1,7 @@
 .track-list-item {
     display: flex;
-    align-items: flex-start;
+    justify-content: space-between;
+    align-items: center;
     padding: 8px 10px;
     background-color: rgb(42, 47, 54);
     border-radius: 8px;
@@ -47,7 +48,6 @@
     font-size: 20px;
     cursor: pointer;
     padding: 5px;
-    border-radius: 50%;
     transition: background-color 0.2s;
     flex-shrink: 0;
 }
