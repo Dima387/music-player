@@ -3,10 +3,12 @@
     justify-content: space-between;
     align-items: center;
     padding: 8px 10px;
-    background-color: rgb(42, 47, 54);
+    background-color: var(--card-bg);
     border-radius: 8px;
     margin: 3px 0;
     gap: 10px;
+    border: 1px solid var(--border);
+    transition: background-color 0.3s;
 }
 
 .track-cover {
@@ -28,7 +30,7 @@
 .track-details h4 {
     margin: 0;
     font-size: 16px;
-    color: white;
+    color: var(--text-h);
     line-height: 1.2;
     overflow: hidden;
     white-space: nowrap;
@@ -38,7 +40,7 @@
 .track-details p {
     margin: 0;
     font-size: 14px;
-    color: #70757e;
+    color: var(--text);
     line-height: 1.2;
 }
 
@@ -50,10 +52,11 @@
     padding: 5px;
     transition: background-color 0.2s;
     flex-shrink: 0;
+    color: var(--text);
 }
 
 .favorite-btn:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: var(--accent-bg);
 }
 
 .favorite-btn.active {

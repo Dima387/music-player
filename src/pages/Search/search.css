@@ -10,16 +10,17 @@
     width: 100%;
     padding: 12px;
     margin-bottom: 20px;
-    border: 1px solid #444;
+    border: 1px solid var(--border);
     border-radius: 8px;
-    background-color: rgb(42, 47, 54);
-    color: white;
+    background-color: var(--card-bg);
+    color: var(--text-h);
     font-size: 16px;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 }
 
 .search-page input:focus {
     outline: none;
-    border-color: #666;
+    border-color: var(--accent);
 }
 
 .tracks-list {

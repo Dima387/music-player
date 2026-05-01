@@ -46,7 +46,55 @@ const tracks = [
     album: "NSHALLAH",
     cover: "nshallah.jpg",
     src:"Nshallah.mp3"
-  }
+  },
+  {
+    id: 7,
+    name: "Моя весна",
+    artist: "SadSvit",
+    album: "20&21",
+    cover: "moya-vesna.jpg",
+    src:"Moya-vesna.mp3"
+  },
+  {
+    id: 8,
+    name: "evergreen",
+    artist: "jacal",
+    album: "evergreen",
+    cover: "evergreen.jpg",
+    src:"Evergreen.mp3"
+  },
+  {
+    id: 9,
+    name: "Outro: Tear",
+    artist: "BTS",
+    album: "Love Yourself 轉 'Tear'",
+    cover: "outro-tear.jpg",
+    src:"Outro-tear.mp3"
+  },
+  {
+    id: 10,
+    name: "My Body Is A Cage",
+    artist: "Peter Gabriel",
+    album: "Scratch My Back",
+    cover: "my-body-is-a-cage.jpg",
+    src:"My-body-is-a-cage.mp3"
+  },
+  {
+    id: 11,
+    name: "Headlock",
+    artist: "Imogen Heap",
+    album: "Speak For Yourself",
+    cover: "headlock.jpg",
+    src:"Headlock.mp3"
+  },
+  {
+    id: 12,
+    name: "Catch My Breath",
+    artist: "Ava Max",
+    album: "Don’t Click Play",
+    cover: "catch-my-breath.jpg",
+    src:"Catch-my-breath.mp3"
+  },
 
 ]
 
