@@ -2,7 +2,7 @@ import { useState } from "react"
 import tracks from "../../data/tracks.js"
 import TrackCard from "../../components/TrackCard/TrackCard.jsx";
 import './search.css';
-import '../../components/TrackListItem/tracklistitem.css';
+
 
 export default function Search() {
     const [query, setQuery] = useState("")
@@ -24,6 +24,7 @@ export default function Search() {
                     artist={track.artist}
                     cover={track.cover}
                     src={track.src}
+                    variant="row"
                 />
             ))}
         </div>
