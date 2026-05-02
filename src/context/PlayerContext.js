@@ -1,22 +1,121 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import tracks from "../data/tracks";
+
+const FAVORITES_STORAGE_KEY = "music-player-favorites";
+const CURRENT_TRACK_STORAGE_KEY = "music-player-current-track";
+const CURRENT_TIME_STORAGE_KEY = "music-player-current-time";
+const VOLUME_STORAGE_KEY = "music-player-volume";
+const THEME_STORAGE_KEY = "music-player-theme";
+
+const getInitialFavorites = () => {
+  try {
+    const stored = localStorage.getItem(FAVORITES_STORAGE_KEY);
+    return stored ? JSON.parse(stored) : [];
+  } catch {
+    return [];
+  }
+};
+
+const getInitialCurrentTrack = () => {
+  try {
+    const stored = localStorage.getItem(CURRENT_TRACK_STORAGE_KEY);
+    return stored ? JSON.parse(stored) : null;
+  } catch {
+    return null;
+  }
+};
+
+const getInitialCurrentTime = () => {
+  try {
+    const stored = localStorage.getItem(CURRENT_TIME_STORAGE_KEY);
+    return stored ? Number(stored) : 0;
+  } catch {
+    return 0;
+  }
+};
+
+const getInitialVolume = () => {
+  try {
+    const stored = localStorage.getItem(VOLUME_STORAGE_KEY);
+    return stored ? Number(stored) : 1;
+  } catch {
+    return 1;
+  }
+};
+
+const getInitialTheme = () => {
+  try {
+    const stored = localStorage.getItem(THEME_STORAGE_KEY);
+    return stored === "dark" ? "dark" : "light";
+  } catch {
+    return "light";
+  }
+};
 
 export const PlayerContext = createContext();
 
 export const PlayerProvider = ({ children }) => {
-  const [currentTrack, setCurrentTrack] = useState(null);
+  const [currentTrack, setCurrentTrack] = useState(getInitialCurrentTrack);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [volume, setVolumeState] = useState(1);
-  const [favorites, setFavorites] = useState([]);
+  const [volume, setVolumeState] = useState(getInitialVolume);
+  const [favorites, setFavorites] = useState(getInitialFavorites);
   const [repeat, setRepeat] = useState(false);
   const [shuffle, setShuffle] = useState(false);
   const [playedTracks, setPlayedTracks] = useState([]);
-  const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState(getInitialTheme);
+  const [currentTime, setCurrentTime] = useState(getInitialCurrentTime);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(FAVORITES_STORAGE_KEY, JSON.stringify(favorites));
+    } catch {
+      // ignore write errors
+    }
+  }, [favorites]);
+
+  useEffect(() => {
+    try {
+      if (currentTrack) {
+        localStorage.setItem(CURRENT_TRACK_STORAGE_KEY, JSON.stringify(currentTrack));
+      } else {
+        localStorage.removeItem(CURRENT_TRACK_STORAGE_KEY);
+      }
+    } catch {
+      // ignore write errors
+    }
+  }, [currentTrack]);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(VOLUME_STORAGE_KEY, String(volume));
+    } catch {
+      // ignore write errors
+    }
+  }, [volume]);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(THEME_STORAGE_KEY, theme);
+    } catch {
+      // ignore write errors
+    }
+  }, [theme]);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(CURRENT_TIME_STORAGE_KEY, String(currentTime));
+    } catch {
+      // ignore write errors
+    }
+  }, [currentTime]);
 
   // ▶️ Play
   const playTrack = (track) => {
-    if (currentTrack && currentTrack.id !== track.id) {
-      setPlayedTracks(prev => [currentTrack, ...prev.slice(0, 9)]); // keep last 10
+    if (!currentTrack || currentTrack.id !== track.id) {
+      if (currentTrack) {
+        setPlayedTracks(prev => [currentTrack, ...prev.slice(0, 9)]); // keep last 10
+      }
+      setCurrentTime(0);
     }
     setCurrentTrack(track);
     setIsPlaying(true);
@@ -109,11 +208,13 @@ export const PlayerProvider = ({ children }) => {
         shuffle,
         tracks,
         theme,
+        currentTime,
         playTrack,
         pauseTrack,
         nextTrack,
         prevTrack,
         setVolume,
+        setCurrentTime,
         addToFavorites,
         removeFromFavorites,
         toggleShuffle,

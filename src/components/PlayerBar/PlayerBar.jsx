@@ -18,12 +18,14 @@ function PlayerBar() {
     volume,
     repeat,
     shuffle,
+    currentTime,
     tracks,
     pauseTrack,
     playTrack,
     nextTrack,
     prevTrack,
     setVolume,
+    setCurrentTime,
     toggleShuffle,
     toggleRepeat,
   } = useContext(PlayerContext)
@@ -81,8 +83,19 @@ function PlayerBar() {
     const audio = audioRef.current
     if (!audio) return
 
-    const onTimeUpdate = () => setCurrTime(audio.currentTime)
-    const onLoadedMetadata = () => setDuration(audio.duration || 0)
+    const onTimeUpdate = () => {
+      const time = audio.currentTime
+      setCurrTime(time)
+      setCurrentTime(time)
+    }
+    const onLoadedMetadata = () => {
+      const durationValue = audio.duration || 0
+      setDuration(durationValue)
+      if (currentTrack && currentTime > 0 && currentTime < durationValue) {
+        audio.currentTime = currentTime
+        setCurrTime(currentTime)
+      }
+    }
     const onEnded = () => {
       if (repeat) {
         audio.currentTime = 0
@@ -101,7 +114,7 @@ function PlayerBar() {
       audio.removeEventListener("loadedmetadata", onLoadedMetadata)
       audio.removeEventListener("ended", onEnded)
     }
-  }, [nextTrack, repeat])
+  }, [nextTrack, repeat, currentTrack, currentTime])
 
   const handleTogglePlay = () => {
     if (!currentTrack) {
@@ -118,6 +131,7 @@ function PlayerBar() {
     if (!audioRef.current) return
     audioRef.current.currentTime = time
     setCurrTime(time)
+    setCurrentTime(time)
   }
 
   const handleVolume = (value) => {
