@@ -14,6 +14,11 @@
   height: auto;
   min-height: 48px;
   flex-shrink: 0;
+  filter: brightness(0);
+}
+
+.dark .navbar img {
+  filter: none;
 }
 
 .links {
