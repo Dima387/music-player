@@ -4,6 +4,17 @@
   box-sizing: border-box;
 }
 
+body {
+  overflow-x: hidden;
+}
+
+.app-container {
+  min-height: 100vh;
+  padding-top: 60px; /* Height of navbar */
+  padding-bottom: 120px; /* Height of player bar */
+  overflow-y: auto;
+}
+
 .app {
   min-height: 100vh;
   background: var(--bg);

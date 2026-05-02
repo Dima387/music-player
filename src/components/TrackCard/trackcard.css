@@ -42,7 +42,7 @@ img {
 .track-info {
     display: flex;
     flex-direction: column;
-    align-items: start;
+    align-items: flex-start;
     justify-content: center;
     margin-top: 10px;
     text-align: left;
@@ -60,6 +60,7 @@ h3.scrolling {
 .track-card-grid .track-info {
     margin-top: 10px;
     width: 90%;
+    text-align: left;
 }
 
 .track-card-row .track-info {
@@ -71,19 +72,31 @@ h3.scrolling {
 .track-card p {
     color: #70757e;
     font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .track-card-grid p {
     font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .track-card-row p {
     font-size: 12px;
     margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 h3 {
-    color: var(--text-h);
+    color: #ffffff;
     font-size: 18px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .track-card-row h3 {
@@ -98,6 +111,7 @@ h3 {
     display: inline-block;
     height: 20px;
     padding-bottom: 30px;
+    color: #ffffff;
 }
 
 @keyframes scrollText {
@@ -129,9 +143,9 @@ h3 {
     position: absolute;
     top: 0;
     left: 0;
-    width: 30px;
+    width: 20px;
     height: 100%;
-    background: linear-gradient(to right, var(--card-bg), transparent);
+    background: linear-gradient(to right, rgb(42, 47, 54), transparent);
 }
 
 .text-gradient-overlay::after {
@@ -139,9 +153,9 @@ h3 {
     position: absolute;
     top: 0;
     right: 0;
-    width: 30px;
+    width: 20px;
     height: 100%;
-    background: linear-gradient(to left, var(--card-bg), transparent);
+    background: linear-gradient(to left, rgb(42, 47, 54), transparent);
 }
 
 .favorite-btn {
