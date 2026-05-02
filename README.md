@@ -1,16 +1,66 @@
-# React + Vite
+# Music Player
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Опис
 
-Currently, two official plugins are available:
+Простий музичний плеєр на React із відтворенням локальних аудіотреків, додаванням до улюблених, збереженням стану програвання та зміною теми.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Технології
 
-## React Compiler
+- React
+- Vite
+- JavaScript
+- CSS
+- LocalStorage
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Як запустити
 
-## Expanding the ESLint configuration
+1. Відкрити термінал у корені проекту.
+2. Виконати:
+   ```bash
+   npm install
+   npm run dev
+   ```
+3. Відкрити адресу, яку покаже Vite у браузері.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Структура проєкту
+
+- `public/` — статичні ресурси: аудіо, зображення
+- `src/` — основний код додатку
+  - `src/components/` — UI-компоненти
+  - `src/context/` — логіка стану плеєра
+  - `src/data/` — список треків
+  - `src/pages/` — сторінкові компоненти
+- `package.json` — залежності та скрипти
+- `vite.config.js` — налаштування Vite
+
+## Розподіл обов'язків
+
+- `src/context/PlayerContext.js` — управління станом плеєра, збереження в localStorage
+- `src/components/PlayerBar/PlayerBar.jsx` — аудіо-панель, прогрес, гучність та керування відтворенням
+- `src/components/TrackCard/TrackCard.jsx` — картка треку з можливістю відтворення та додавання до favorites
+- `src/components/Navbar/Navbar.jsx` — навігація і перемикач теми
+- `src/pages/Home/Home.jsx` — головна сторінка з треками
+- `src/pages/Search/Search.jsx` — пошук по треках
+- `src/pages/Favourites/Favourites.jsx` — сторінка улюблених треків
+
+## Що реалізовано
+
+- Відтворення треків, пауза, наступний/попередній трек
+- Прогрес-бар із можливістю перемотування
+- Регулювання гучності та mute
+- Додавання/видалення треків до улюблених
+- Збереження поточного треку, позиції, гучності, теми та улюблених у localStorage
+- Темна/світла тема
+
+## Що планувалось (бонус)
+
+- Поліпшення UI та анімації
+- Більш гнучка пагінація чи плейлисти
+- Підтримка локального збереження історії програвання
+- Додаткові ефекти при переході між треками
+
+## Скриншоти
+
+![Screenshot 1](./screenshots/screenshot-1.png)
+
+![Screenshot 2](./screenshots/screenshot-2.png)
