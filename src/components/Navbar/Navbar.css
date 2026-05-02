@@ -10,9 +10,7 @@
 }
 
 .navbar img {
-  width: 180px;
-  height: auto;
-  min-height: 48px;
+  align-self: center;
   flex-shrink: 0;
 }
 
@@ -50,5 +48,9 @@
   background: var(--accent-bg);
 }
 .navbar a {
-  height: 48px;
+  height: min-content;
+}
+.navbar a:first-child {
+  display: flex;
+  align-items: center;
 }

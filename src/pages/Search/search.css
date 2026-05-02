@@ -2,6 +2,7 @@
     padding: 20px;
     display: flex;
     flex-direction: column;
+    margin-bottom: 180px;
 }
 
 .search-page h1 {

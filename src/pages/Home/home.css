@@ -11,5 +11,6 @@
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 20px;
     box-sizing: border-box;
+    margin-bottom: 180px;
 }
 
