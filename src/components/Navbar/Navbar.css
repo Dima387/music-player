@@ -29,6 +29,7 @@
   width: 180px;
   height: auto;
   min-height: 48px;
+  align-self: center;
 }
 
 .theme-toggle {
@@ -43,4 +44,7 @@
 
 .theme-toggle:hover {
   background: var(--accent-bg);
+}
+.navbar a {
+  height: 48px;
 }
