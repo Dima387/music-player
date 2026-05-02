@@ -6,10 +6,26 @@
   background: var(--accent-bg);
   color: var(--text);
   border-bottom: 1px solid var(--border);
+  position: relative;
+}
+
+.navbar img {
+  width: 180px;
+  height: auto;
+  min-height: 48px;
+  flex-shrink: 0;
+}
+
+.links {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .links a {
-  margin-left: 20px;
   color: var(--text);
   text-decoration: none;
   font-weight: 600;
@@ -17,19 +33,6 @@
 
 .links a:hover {
   color: var(--accent);
-}
-
-.navbar h2 {
-  font-size: 24px;
-  font-weight: 600;
-  color: var(--text);
-}
-
-.navbar img {
-  width: 180px;
-  height: auto;
-  min-height: 48px;
-  align-self: center;
 }
 
 .theme-toggle {
@@ -40,6 +43,7 @@
   padding: 8px;
   border-radius: 50%;
   transition: background 0.2s;
+  flex-shrink: 0;
 }
 
 .theme-toggle:hover {
