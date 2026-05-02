@@ -1,15 +1,19 @@
 .home-page {
-    padding: 20px;
+    padding: 20px 0;
+    max-width: none;
+    margin: 0;
 }
 
 .home-page h1 {
     margin-bottom: 30px;
+    padding: 0 20px;
 }
 
 .tracks {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 20px;
-    padding: 0;
+    padding: 0 20px;
+    box-sizing: border-box;
 }
 
